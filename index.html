@@ -7,24 +7,24 @@
 	<meta name="description" content="Pablo Suarez sitio desarrollado como prueba de conocimiento FrontEnd" />
 	<meta name="keywords" content="web, desarrollo, programador, frontend, Pablo Suarez, desarrolloUy.com"/>
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="./css/normalize.min.css">
-	<link rel="stylesheet" href="./css/style.min.css">
+	<link rel="stylesheet" href="./css/style.compiled.css">
+	<link rel="stylesheet" href="./css/normalize.min.css">	
 </head>
 <body>
 
 	<nav class="actions">
 		<div class="lienzo">
-			<ul id="js-menu" class="mobile_only menu menu_mobile flex_container">
-				<li class="menu_item menu_item-left">MENU</li>
+			<ul class="mobile_only menu menu_mobile flex_container">
+				<li class="js-menu-mobile menu_item menu_item-left">MENU</li>
 			</ul>
-			<ul id="js-menu-items" class="menu flex_container mobile_no">
-				<li class="menu_item clickable" id="index">Inicio</li>
-				<li class="menu_item clickable" id="aboutme">Sobre mi</li>
-				<li class="menu_item clickable" id="html5">HTML 5</li>
-				<li class="menu_item clickable" id="css3">CSS 3</li>
-				<li class="menu_item clickable" id="js">Javascript</li>
-				<li class="menu_item clickable" id="perfomance">Rendimiento</li>
-				<li class="menu_item clickable" data-text-default="Iniciar Sesión" data-text-active="Cerrar Sesión" id="session">Iniciar Sesión</li>
+			<ul id="js-menu-items" class="menu flex_container flex_container-flex-wrap mobile_no">
+				<li class="js-menu menu_item clickable" id="index">Inicio</li>
+				<li class="js-menu menu_item clickable" id="aboutme">Sobre mi</li>
+				<li class="js-menu menu_item clickable" id="html5">HTML 5</li>
+				<li class="js-menu menu_item clickable" id="css3">CSS 3</li>
+				<li class="js-menu menu_item clickable" id="js">Javascript</li>
+				<li class="js-menu menu_item clickable" id="perfomance">Rendimiento</li>
+				<li class="js-menu menu_item clickable" data-text-default="Iniciar Sesión" data-text-active="Cerrar Sesión" id="session">Iniciar Sesión</li>
 			</ul>
 		</div>
 	</nav>
@@ -33,7 +33,7 @@
 		<div class="flex_container">
 			<aside class="aside">
 				<div align="center">
-					<img class="aside_img_profile" src="./img/profile.jpeg" alt="">
+					<img class="aside_img_profile" src="./img/pablo_suarez.jpeg" alt="Imagen de perfil Pablo Suarez">
 				</div>
 				<h1 class="aside_title">Bienvenido !</h1>
 				<div class="aside_info">
@@ -82,7 +82,7 @@
 				</div>
 			</section>
 
-			<section id="perfomance_content" class="section_content hidden">
+			<section id="perfomance_content" class="section_content ">
 				<header><h2>3 técnicas para optimizar perfomance</h2></header>
 				<p>La compresion de html, css y js, para esto se puede usar stylus, jade y babel o algun gestor de tareas como Gulp y sus respectivos plugins.</p>
 				<p>Reducir la menor cantidad las llamadas al servidor, es recomendado tener un solo archivo para css, js y html respectivamente.<br/>
@@ -90,23 +90,15 @@
 				<p>El uso de cache puede ser muy beneficioso, actualmente disponemos de localStorage también.</p>
 			</section>
 
-			<section id="session_content" class="section_content hidden">
-				<header><h2>Sobre mi</h2></header>
-					<p>Soy un joven programador con 5 años de experiencia que me han permitido trabajar en sistemas varios como
-					<br/>Erp`s, de logística, financieros, producción(fábrica) y por último para una plataforma de Virtual Banking.
-				</p>
-				<p>Deseo dedicarme al desarrollo web preferentemente pero no descarto trabajar como backend y demas opciones,
-					<br/> me gusta mucho el desarrollo y rápidamente me adapto a la situación.</p>
-				<p><strong>He trabajado en desarrollo web con:</strong> git, bitbucker, Html, css, js, jquery, jsp, struts, java, maven, sql.</p>
-				<p>Para sistemas Windows Mobile: C# y Web services.</p>
-				<p>Para sistemas de escritorio sobre: Java, clarion y c#.</p>
-				<p>También poseo experiencia como freelance trabajando de scraper sobre anuncios web con Php como lenguaje</p>
+			<section id="perfomance_gitHub" class="section_content">
+				<header><h2>Mis Repositorios</h2></header>
+				<ul id="list_repositories_item" class="list"></ul>
 			</section>
 		</div>
 	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-	<script src="./js/main.js"></script>
-
+	<script src="./js/main.compiled.js"></script>
 </body>
 </html>
