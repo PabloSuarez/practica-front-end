@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pablo Suarez</title>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/Pablo_Suarez.ico">
 	<meta name="description" content="Pablo Suarez sitio desarrollado como prueba de conocimiento FrontEnd" />
 	<meta name="keywords" content="web, desarrollo, programador, frontend, Pablo Suarez, desarrolloUy.com"/>
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="./css/style.compiled.css">
-	<link rel="stylesheet" href="./css/normalize.min.css">	
+	<link rel="stylesheet" href="./css/normalize.min.css">
 </head>
 <body>
 
@@ -20,24 +20,38 @@
 			<ul id="js-menu-items" class="menu flex_container flex_container-flex-wrap mobile_no">
 				<li class="js-menu menu_item clickable" id="index">Inicio</li>
 				<li class="js-menu menu_item clickable" id="aboutme">Sobre mi</li>
-				<li class="js-menu menu_item clickable" id="html5">HTML 5</li>
-				<li class="js-menu menu_item clickable" id="css3">CSS 3</li>
-				<li class="js-menu menu_item clickable" id="js">Javascript</li>
-				<li class="js-menu menu_item clickable" id="perfomance">Rendimiento</li>
 				<li class="js-menu menu_item clickable" data-text-default="Iniciar Sesión" data-text-active="Cerrar Sesión" id="session">Iniciar Sesión</li>
 			</ul>
 		</div>
 	</nav>
 
+	<div class="flex_container flex_container-flex-center flex_container-flex-wrap">
+		<div class="presentation">
+			<div class="presentation_title">
+				<h1>DesarrolloUy.com</h1>
+			</div>
+		</div>
+
+		<div class="lienzo">
+			<div class="responsive_title">
+				<h2>web responsive</h2>
+				<h4>sitios que se adaptan a cada pantalla</h4>
+			</div>
+			<img src="./img/responsive.png" alt="" class="img_center">
+		</div>
+
+	</div>
+
 	<div id="js-main" class="flex_container lienzo flex_container-flex-center">
-		<div class="flex_container">
+
+		<div class="flex_container hidden">
 			<aside class="aside">
 				<div align="center">
-					<img class="aside_img_profile" src="./img/pablo_suarez.jpeg" alt="Imagen de perfil Pablo Suarez">
+					<img class="aside_img_profile" src="./img/Pablo_Suarez.jpeg" alt="Imagen de perfil Pablo Suarez">
 				</div>
 				<h1 class="aside_title">Bienvenido !</h1>
 				<div class="aside_info">
-					<h4 class="aside_username">soy Pablo Suarez</h4>
+					<h4 class="aside_username">Pablo Suarez - DesarrolloUy.com </h4>
 					<div class="aside_border mobile_no"></div>
 					<a class="aside_social_link" href="https://uy.linkedin.com/in/pablosuarezdesarrolloy" target="_blank" alt="Perfil Linkedin">Linkedin</a>
 				</div>
@@ -45,54 +59,27 @@
 		</div>
 
 		<div id="js-main-content" class="flex_container">
-			<section id="aboutme_content" class="section_content about_me hidden">
+			<section class="js-aboutme-content section_content about_me hidden">
 				<header><h2>Sobre mi</h2></header>
- 				<p>Soy un joven programador con 4 años de experiencia que me han permitido trabajar en sistemas varios como
-					<br/>Erp`s, de logística, financieros, producción(fábrica) y por último para una plataforma de Virtual Banking.
-				</p>
-				<p>Deseo dedicarme al desarrollo web preferentemente pero no descarto trabajar como backend y demas opciones,
-					<br/> me gusta mucho el desarrollo y rápidamente me adapto a la situación.</p>
-				<p><strong>He trabajado en desarrollo web con:</strong> git, bitbucker, Html, css, js, jquery, jsp, struts, java, maven, sql.</p>
-				<p>Para sistemas Windows Mobile: C# y Web services.</p>
-				<p>Para sistemas de escritorio sobre: Java, clarion y c#.</p>
-				<p>También poseo experiencia como freelance trabajando de scraper sobre anuncios web con Php como lenguaje.</p>
-			</section>
-
-			<section id="html5_content" class="section_content hidden">
-				<header><h2>3 mejoras en html5</h2></header>
-				<p>Se han incorporado nuevas etiquetas como < video > < audio > que permiten de manera muy amena reproducir contenidos.</p>
-				<p>Se incluyen controles como el validaror de correo, o de urls que ya no requieren de js, permitiendo con css informar al usuario si es válido o no el valor ingresado.</p>
-				<p>Se agregan localStorage y sessionStorage dando posibilidad de almacenacimento en el cliente, teniendo mucha mas capacidad que una cookie y siendo muy sencillas de utilizar.</p>
-			</section>
-
-			<section id="css3_content" class="section_content hidden">
-				<header><h2>3 mejoras en css3</h2></header>
-				<p>Por ejemplo se agregan las etiquetas para border-color, border-radius (utilizadas en esta web, en imagen de perfil).</p>
-				<p>Se agregan las media queries para detectar la resolucion de la pantalla, utilizadas para hacer responsivo este sitio.</p>
-				<p>Flexbox que llego para potenciar y facilitar el responsive design, ya no es necesario float para esto. <br/>
-					Es muy facil de usar y tiene muchas opciones personalizables.</p>
-			</section>
-
-			<section id="js_content" class="section_content hidden">
-				<header><h2>Javascript: ejemplo con Google Maps</h2></header>
-				<div class="map lienzo">
-					<div class="map_main">
-						<div class="map_container" id="map-canvas"></div>
-					</div>
+ 				<p>Mi nombre es Pablo Suarez, vivo en <span class="view_map clickable js-las-piedas">Las Piedras ciudad de Canelones, Uruguay.</span></p>
+				<div class="map_main hidden">
+					<div class="map_container" id="map-canvas"></div>
 				</div>
+				<p>Un informático por pasión, hobby y profesión.
+				Hace 4 años trabajo como programador participando en sistemas varios como: Erp`s, financieros, de producción y home banking, entre otros.</p>
+				<p>Actualmente deseo dedicarme al desarrollo web pero no descarto backend, mobile y demás opciones, me gusta mucho el desarrollo y rápidamente me adapto al equipo como a las tecnologías.</p>
+			</section>
+			<section class="js-aboutme-content section_content about_me hidden">
+				<header><h3>Experiencias: </h3></header>
+				<p>He trabajado en desarrollo web con: git, bitbucker, Html, css, js, jquery, jsp, java, struts e hibernate.</p>
+				<p>Para sistemas Windows Mobile: C#</p>
+				<p>Para sistemas de escritorio sobre: Java y C#.</p>
+				<p>También poseo experiencia como freelance trabajando de scraper web con Php.</p>
 			</section>
 
-			<section id="perfomance_content" class="section_content ">
-				<header><h2>3 técnicas para optimizar perfomance</h2></header>
-				<p>La compresion de html, css y js, para esto se puede usar stylus, jade y babel o algun gestor de tareas como Gulp y sus respectivos plugins.</p>
-				<p>Reducir la menor cantidad las llamadas al servidor, es recomendado tener un solo archivo para css, js y html respectivamente.<br/>
-					También existe la posibilidad de reducir la llamada a imágenes en el servidor con los mapas de imágenes.</p>
-				<p>El uso de cache puede ser muy beneficioso, actualmente disponemos de localStorage también.</p>
-			</section>
-
-			<section id="perfomance_gitHub" class="section_content">
-				<header><h2>Mis Repositorios</h2></header>
-				<ul id="list_repositories_item" class="list"></ul>
+			<section id="perfomance_gitHub" class="section_content hidden">
+				<header><h2>Mis repositorios</h2></header>
+				<div class="js-container-repositories"></div>
 			</section>
 		</div>
 	</div>

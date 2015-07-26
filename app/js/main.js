@@ -63,10 +63,7 @@ $('.js-menu').on('click',(e) => {
 				$(main).addClass('flex_container-flex-start');
 			}
 		}
-		mostrarSectionContent('#'+id+'_content');
-		if(id == 'js'){
-			loadMap();
-		}
+		mostrarSectionContent('.js-'+id+'-content');
 	}
 	// para saber si estoy en mobile
 	if('none' != $('.js-menu-mobile').css('display')){
@@ -137,19 +134,10 @@ function checkSessionCookie() {
 * GoogleMaps
 */
 function loadMap(){
-	var estadio = new google.maps.LatLng(-34.8945376, -56.1528289);
+	var lasPiedras = new google.maps.LatLng(-34.727514, -56.216513);
 
 	var ubicaciones = [
-	  ['Estadio Centenario', -34.8945376, -56.1528289, 1],
-	  ['Obelisco', -33.923036, 151.259052, 5],
-	  ['Pocitos', -34.9102703, -56.1426473, 3],
-	  ['Casino Carrasco', -34.8906959,-56.0553118, 4],
-	  ['Cerro Montevideo', -34.8886106,-56.2580556, 2],
-	  ['London', 51.5286416,-0.1015987, 6],
-	  ['Paris', 48.8588589,2.3470599, 7],
-	  ['Curitiba', -25.4951519,-49.2874025, 8],
-	  ['Miami', 25.782324,-80.2310801, 9],
-	  ['Port Elizabeth', -33.953514, 25.612974, 10],
+	  ['Ciudad de Las Piedras', -34.727514, -56.216513, 1]
 	];
 
 	var marker;
@@ -165,7 +153,7 @@ function loadMap(){
 
 	var mapOptions = {
 		zoom: 10,
-		center: estadio
+		center: lasPiedras
 	};
 
 	map = new google.maps.Map( document.getElementById('map-canvas') , mapOptions);
@@ -183,6 +171,16 @@ function loadMap(){
 		google.maps.event.addListener(marker, 'click', toggleBounce);
 	}
 }
+
+$('.js-las-piedas').on('click',(event) => {
+	var mapa = $('.map_main')
+	if(mapa.hasClass('hidden')){ // si esta oculto lo muestro
+		mapa.removeClass('hidden');
+		loadMap();
+	}else{
+		mapa.addClass('hidden');
+	}
+})
 /* final GoogleMaps */
 
 
@@ -194,6 +192,23 @@ function loadMap(){
 function getPromise (url) {
 	return Promise.resolve($.get(url))
 }
+
+function getPromiseCache(url) {
+	if(localStorage[url]){
+		// paso a JSON
+		let datos = JSON.parse(localStorage[url])
+		return Promise.resolve(datos)
+	}
+	return Promise.resolve($.get(url))
+	.then((data) => {
+		let datos = data
+		// paso el objeto a string
+		// console.log(datos)
+		datos = JSON.stringify(datos)
+		localStorage[url] = datos
+		return Promise.resolve(data)
+	})
+}
 /* fin PROMISES */
 
 
@@ -204,7 +219,7 @@ function getPromise (url) {
 */
 function leoRepositorios(url){
 	!url ? url = 'https://api.github.com/users/pablosuarez/repos' : false
-	getPromise(url)
+	getPromiseCache(url)
 	.then((data) => {
 		cargoRepositorios(data)
 	})
@@ -212,33 +227,36 @@ function leoRepositorios(url){
 
 function cargoRepositorios (data) {
 	let repositorio = `
-	<li class="list_item">
-		<div class="list_item_head">
-			<div class="list_item_head_title">BRANCH-NAME</div>
-			<div class="list_item_head_page"><a class="list_item_head_page_link" href="BRANCH-HOMEPAGE" target="_blank">BRANCH-HOMEPAGE</a></div>
-		</div>
-		<div class="list_item_body">
-			<div class="">BRANCH-DESCRIPTION</div>
-			<div class="">BRANCH-LANGUAGE</div>
-			<div class="">BRANCH-UPDATE</div>
-			<div class="">BRANCH-CLONE</div>
-			<div class="">BRANCH-URL</div>
-		</div>
-	</li>`
+	<ul id="list_repositories_item" class="list">
+		<li class="list_item">
+			<div class="list_item_head">
+				<div class="list_item_head_page flex_container flex_container-flex-space-between flex_container-flex-direction-row">
+					<a class="list_item_head_page_link" href="BRANCH-URL" target="_blank">
+						<div class="list_item_head_title">BRANCH-NAME</div>
+					</a>
+					<div class="list_item_date">BRANCH-UPDATE</div>
+				</div>
+				<div class="">BRANCH-DESCRIPTION</div>
+			</div>
+			<div class="list_item_body">
+				<div class="list_item_body_clone">git clone BRANCH-CLONE</div>
+				<div class="list_item_body_demo">
+					<a class="list_item_body_demo link" target="_blank" href="BRANCH-HOMEPAGE">Ver web</a>
+				</div>
+			</div>
+		</li>
+	</ul>`
 
 	for (let repo of data) {
-		// console.log(repo)
-		repositorio = repositorio.replace('BRANCH-URL', repo.html_url)
-		repositorio = repositorio.replace('BRANCH-NAME', repo.name)
-		repositorio = repositorio.replace('BRANCH-HOMEPAGE', repo.homepage)
-		repositorio = repositorio.replace('BRANCH-HOMEPAGE', repo.homepage)
-		repositorio = repositorio.replace('BRANCH-DESCRIPTION', repo.description)
-		repositorio = repositorio.replace('BRANCH-LANGUAGE', repo.language)
-		repositorio = repositorio.replace('BRANCH-UPDATE', repo.updated_at)
-		repositorio = repositorio.replace('BRANCH-CLONE', repo.clone_url)
-		// console.log(repositorio)
-		$('#list_repositories_item').append(repositorio)
-		return
+		let repoAppned = repositorio
+		repoAppned = repoAppned.replace('BRANCH-URL', repo.html_url)
+		repoAppned = repoAppned.replace('BRANCH-NAME', repo.name)
+		repoAppned = repoAppned.replace('BRANCH-HOMEPAGE', repo.homepage)
+		repoAppned = repoAppned.replace('BRANCH-DESCRIPTION', repo.description)
+		let date = new Date(repo.updated_at)
+		repoAppned = repoAppned.replace('BRANCH-UPDATE', date.getDay()+'/'+date.getMonth()+'/'+date.getYear())
+		repoAppned = repoAppned.replace('BRANCH-CLONE', repo.clone_url)
+		$('.js-container-repositories').append(repoAppned)
 	}
 }
 /* final REPOS desde GITHUB */
